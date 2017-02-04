@@ -1,0 +1,41 @@
+ext {
+    springVersion = '5.0.0.BUILD-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
+    project.group = 'com.coupang.samaritan'
+    compileJava.options.encoding = 'UTF-8'
+    project.version = '1.0.0'
+    
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://repo.spring.io/libs-milestone'
+        }
+        maven { url "https://repo.spring.io/snapshot" }
+    }
+
+    configurations {
+        all*.exclude group: "commons-logging", module: "commons-logging"
+    }
+
+    dependencies {
+
+        compile 'org.projectlombok:lombok:1.16.12'
+
+        // logging staff
+        compile 'org.apache.logging.log4j:log4j-api:2.7'
+        compile 'org.apache.logging.log4j:log4j-core:2.7'
+        compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.7'
+        compile 'org.apache.logging.log4j:log4j-jcl:2.7'
+        compile 'org.slf4j:jcl-over-slf4j:1.7.21'
+
+        compile 'com.google.guava:guava:20.0'
+
+        compile group: 'org.json', name: 'json', version: '20160810'
+        compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.1'
+        compile group: 'com.google.code.gson', name: 'gson', version: '2.8.0'
+    }
+}

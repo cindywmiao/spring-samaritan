@@ -1,0 +1,36 @@
+spring:
+ profiles: dev
+ jpa:
+  hibernate:
+    ddl-auto: none
+ datasource:
+   schema: classpath*:schema-dev.sql
+
+name: develname
+env: develYML
+servers:
+  - develserver1
+  - develserver2
+numbers:
+  - 1
+  - 2
+---
+spring:
+ profiles: prod
+ jpa:
+   hibernate:
+     ddl-auto: none
+ datasource:
+  url:  jdbc:h2:tcp://localhost/~/test
+  username: sa
+  password:
+  driver-class-name: org.h2.Driver
+
+name: prodname
+env: prodYML
+servers:
+  - prodserver1
+  - prodserver2
+numbers:
+  - 5
+  - 6

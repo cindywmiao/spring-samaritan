@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TroubleShooting</title>
+
+	<link rel="stylesheet" href="css/grid.css">
+
+
+
+</head>
+<body>
+
+	<link type="text/css" rel="stylesheet" href="js/jsgrid/jsgrid.min.css" />
+	<link type="text/css" rel="stylesheet" href="js/jsgrid/jsgrid-theme.min.css" />
+	<link type="text/css" rel="stylesheet" href="css/jquery.dataTables.min.css" />
+
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script type="text/javascript" src="js/echarts.min.js"></script>
+	<script type="text/javascript" src="js/jquery.table2excel.min.js"></script>
+	<script type="text/javascript" src="js/jsgrid/jsgrid.min.js"></script>
+	<script type="text/javascript" src="js/DataTables/media/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/DataTables/extensions/FixedColumns/js/dataTables.fixedColumns.min.js"></script>
+
+
+
+<!--
+<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/echarts.js"></script>
+
+-->
+
+
+
+	<div style="width: 900px; float: left">
+
+		<div id="pie_chart" style="float: left; width: 100px; height: 400px">
+		</div>
+
+		<div id="roqNoneZeroPieChart" style="float: left; width: 500px; height: 400px">
+		</div>
+
+
+	</div>
+
+
+
+	<table id="skuCheckDetailTable" class="display" style="width: 100%; height: 400px"></table>
+
+	<div class="col-md-5 left-success-border config-section" style="min-height:290px">
+		<h4>Upload SKUs without Roq</h4>
+		<div id="upload_skus_missing"">
+			<div class="row form form-horizontal bottom-10">
+                        <span class="pull-left">
+                            <a class="btn-link btn btn-success" target="_blank">
+                                <span class="fa fa-cloud-download">Download</span>
+                            </a>
+                        </span>
+			</div>
+			<div class="row form form-horizontal bottom-10">
+				<input class="btn form-control" type="file" style="width: 170px;display: inline"  id="missingSkuFileInput">
+				<button class="btn-link btn btn-success" ng-click="updateBuyingPeriod()" >
+					<span class="fa fa-cloud-upload">Upload</span>
+				</button>
+
+				<div id="updating-buying-period"></div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+	<!-- component template -->
+	<script type="text/x-template" id="grid-template">
+		<table>
+			<thead>
+			<tr>
+				<th v-for="key in columns"
+					@click="sortBy(key)"
+					:class="{ active: sortKey == key }">
+					{{ key | capitalize }}
+					<span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
+			  </span>
+				</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr v-for="entry in filteredData">
+				<td v-for="key in columns">
+					{{entry[key]}}
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</script>
+
+
+	<div style="width: 100%; height: auto; position: relative;">
+
+		<!-- demo root element -->
+<!--
+		<div id="missingSkusTable">
+			<form id="search">
+				Given a SKU to find <input name="query" v-model="searchQuery">
+			</form>
+
+			<div id="missingSkusTable_jsGrid"></div>
+
+			<demo-grid
+					:data="gridData"
+					:columns="gridColumns"
+					:filter-key="searchQuery">
+			</demo-grid>
+		</div>
+-->
+
+	</div>
+
+
+
+
+
+	<code class="html">
+		<!-- Script -->
+		<script type="text/javascript" src="javascript/skuStatusGrid.js"></script>
+
+		<script type="text/javascript" src="javascript/roqResult.js"></script>
+
+		<script type="text/javascript" src="javascript/showPieChart.js"></script>
+
+
+		<script type="text/javascript">
+
+
+			$(document).ready(function () {
+				console.log("load  missing Skus  script.")
+
+				draw_roqNoneZeroPieChart()
+
+			});
+
+		</script>
+	</code>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TroubleShooting</title>
+
+	<link rel="stylesheet" href="css/grid.css">
+
+
+
+</head>
+<body>
+
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script type="text/javascript" src="js/echarts.min.js"></script>
+
+
+<!--
+<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/echarts.js"></script>
+
+-->
+
+
+
+
+	<!-- component template -->
+	<script type="text/x-template" id="grid-template">
+		<table>
+			<thead>
+			<tr>
+				<th v-for="key in columns"
+					@click="sortBy(key)"
+					:class="{ active: sortKey == key }">
+					{{ key | capitalize }}
+					<span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
+			  </span>
+				</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr v-for="entry in filteredData">
+				<td v-for="key in columns">
+					{{entry[key]}}
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</script>
+
+	<!-- demo root element -->
+	<div id="csvDifferTable">
+		<form id="search">
+			rtyrtty Given a SKU to find <input name="query" v-model="searchQuery">
+		</form>
+		<demo-grid
+				:data="gridData"
+				:columns="gridColumns"
+				:filter-key="searchQuery">
+		</demo-grid>
+	</div>
+
+
+
+	<div style="width: 900px; float: left">
+
+		<div id="pie_chart" style="float: left; width: 300px; height: 400px">
+			Not showMsg
+
+			sdgfg
+		</div>
+		<div style="float: left; width: 30px"></div>
+
+		<div id="roqNoneZeroPieChart" style="float: left; width: 300px; height: 400px">
+			Not showMsg
+
+			sdgfg
+		</div>
+
+
+
+	</div>
+
+
+
+	<div id="app">
+		sddfgg
+		sdf
+		{{ message }}
+	</div>
+
+
+	<code class="html">
+		<!-- Script -->
+		<script type="text/javascript" src="javascript/skuStatusGrid.js"></script>
+
+		<script type="text/javascript" src="javascript/roqResult.js"></script>
+
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+				console.log("dfgvg")
+				draw_roqNoneZeroPieChart()
+			});
+
+		</script>
+	</code>
+
+
+
+
+
+</body>
+</html>

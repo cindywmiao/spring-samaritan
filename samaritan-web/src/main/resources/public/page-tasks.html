@@ -1,0 +1,110 @@
+<div class="container-fluid">
+    <div class="panel panel-headline">
+        <div class="panel-heading">
+            <h3 class="panel-title">HDFS Monitor Task</h3>
+            <input type="button" class="btn btn-primary" value="Create" ng-click="showCreateTask()" />
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Path Match</th>
+                        <th>Condition</th>
+                        <th>Cron</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat = "task in hdfsPathMonitorTasks">
+                        <td>{{ task.name }}</td>
+                        <td>
+                            <div style="width:100px;word-wrap:break-word;" >
+                                {{ task.pathMatch }}
+                            </div>
+                        </td>
+                        <td>{{ task.conditionSymbol }}&nbsp;{{task.conditionValue}}&nbsp;mb</td>
+                        <td>{{ task.cron }}</td>
+                        <td>
+                            <input type="button" value="delete" class="btn btn-danger" ng-click="showDeleteTask(task)" />
+                            &nbsp;
+                            &nbsp;
+                            <input type="button" value="update" class="btn btn-success" ng-click="showUpdateTask(task)" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="delete-task-prompt" class="modal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="width:25%">
+        <div class="modal-content">
+            <div class="modal-body">
+                <label class="control-label">
+                    Are you sure to delete the Task: {{selectedTask.name}}
+                </label>
+            </div>
+            <div class="modal-footer">
+                <input class="btn btn-primary" type="button" value="Yes" ng-click="doDeleteTask()" />
+                <input class="btn btn-primary" type="button" value="No" data-dismiss="modal" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="update-task-prompt" class="modal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="width:50%">
+        <div class="modal-content">
+            <div class="modal-body">
+                <label class="control-label">Name</label>
+                <input placeholder="name" ng-model="selectedTask.name" style="width:100%"/>
+                <label class="control-label">PathMatch</label>
+                <input placeholder="path match" ng-model="selectedTask.pathMatch" style="width:100%"/>
+                <label class="control-label">Condition</label>
+                <div>
+                    <select name="conditionSymbol" ng-model="selectedTask.conditionSymbol">
+                        <option value=">">greater than</option>
+                        <option value="<">less than</option>
+                    </select>
+                    <input placeholder="condition value" ng-model="selectedTask.conditionValue" style="width:80%" type="number"/> mb
+                </div>
+                <label class="control-label">Cron</label>
+                <input placeholder="cron" ng-model="selectedTask.cron" style="width:100%"/>
+            </div>
+            <div class="modal-footer">
+                <input class="btn btn-primary" type="button" value="Yes" ng-click="doUpdateTask()" />
+                <input class="btn btn-primary" type="button" value="No" data-dismiss="modal" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="create-task-prompt" class="modal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="width:50%">
+        <div class="modal-content">
+            <div class="modal-body">
+                <label class="control-label">Name</label>
+                <input placeholder="name" ng-model="selectedTask.name" style="width:100%"/>
+                <label class="control-label">PathMatch</label>
+                <input placeholder="path match" ng-model="selectedTask.pathMatch" style="width:100%"/>
+                <label class="control-label">Condition</label>
+                <div>
+                    <select name="conditionSymbol" ng-model="selectedTask.conditionSymbol">
+                        <option value=">">greater than</option>
+                        <option value="<">less than</option>
+                    </select>
+                    <input placeholder="condition value" ng-model="selectedTask.conditionValue" style="width:80%" type="number"/> mb
+                </div>
+                <label class="control-label">Cron</label>
+                <input placeholder="cron" ng-model="selectedTask.cron" style="width:100%"/>
+            </div>
+            <div class="modal-footer">
+                <input class="btn btn-primary" type="button" value="Yes" ng-click="doCreateTask()" />
+                <input class="btn btn-primary" type="button" value="No" data-dismiss="modal" />
+            </div>
+        </div>
+    </div>
+</div>
+

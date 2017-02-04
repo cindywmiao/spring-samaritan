@@ -1,0 +1,97 @@
+<div class="container-fluid">
+    <div class="panel panel-headline">
+        <div class="panel-heading">
+            <h3 class="panel-title">Monitor Scenario</h3>
+            <input type="button" class="btn btn-primary" value="Create" ng-click="showCreateScenario()" />
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Monitor Task</th>
+                        <th>Success Alarm Strategy</th>
+                        <th>Failed Alarm Strategy</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat = "scenario in scenarios">
+                        <td>{{ scenario.name }}</td>
+                        <td>{{ scenario.pathMonitorTask.name }}</td>
+                        <td>{{ scenario.successAlarmStrategy.name }}</td>
+                        <td>{{ scenario.failedAlarmStrategy.name }}</td>
+                        <td>
+                            <input type="button" value="delete" class="btn btn-danger" ng-click="showDeleteScenario(scenario)" />
+                            &nbsp;
+                            &nbsp;
+                            <input type="button" value="update" class="btn btn-success" ng-click="showUpdateScenario(scenario)" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="delete-scenario-prompt" class="modal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="width:25%">
+        <div class="modal-content">
+            <div class="modal-body">
+                <label class="control-label">
+                    Are you sure to delete the Scenario: {{selectedScenario.name}}
+                </label>
+            </div>
+            <div class="modal-footer">
+                <input class="btn btn-primary" type="button" value="Yes" ng-click="doDeleteScenario()" />
+                <input class="btn btn-primary" type="button" value="No" data-dismiss="modal" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="create-scenario-prompt" class="modal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="width:50%">
+        <div class="modal-content">
+            <div class="modal-body">
+                <label class="control-label">Name</label>
+                <input placeholder="name" ng-model="selectedScenario.name" style="width:100%"/>
+                <label class="control-label" style="width:29%">Path monitor task</label>
+                <select ng-model="selectedScenario.pathMonitorTask" ng-options="task.name for task in hdfsPathMonitorTasks" style="width:69%"></select>
+                <label class="control-label" style="width:29%">Success alarm strategy:</label>
+                <select ng-model="selectedScenario.successAlarmStrategy" ng-options="strategy.name for strategy in alarmStrategies" style="width:69%"></select>
+                <label class="control-label" style="width:29%">Failed alarm strategy:</label>
+                <select ng-model="selectedScenario.failedAlarmStrategy" ng-options="strategy.name for strategy in alarmStrategies" style="width:69%"></select>
+            </div>
+            <div class="modal-footer">
+                <input class="btn btn-primary" type="button" value="Yes" ng-click="doCreateScenario()" />
+                <input class="btn btn-primary" type="button" value="No" data-dismiss="modal" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="update-scenario-prompt" class="modal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="width:25%">
+        <div class="modal-content">
+            <div class="modal-body">
+                <label class="control-label">Name</label>
+                <input placeholder="name" ng-model="selectedScenario.name" style="width:100%"/>
+                <label class="control-label" style="width:29%">Path monitor task</label>
+                <select ng-model="selectedScenario.pathMonitorTask" ng-options="task.name for task in hdfsPathMonitorTasks" style="width:69%"></select>
+                <label class="control-label" style="width:29%">Success alarm strategy:</label>
+                <select ng-model="selectedScenario.successAlarmStrategy" ng-options="strategy.name for strategy in alarmStrategies" style="width:69%"></select>
+                <label class="control-label" style="width:29%">Failed alarm strategy:</label>
+                <select ng-model="selectedScenario.failedAlarmStrategy" ng-options="strategy.name for strategy in alarmStrategies" style="width:69%"></select>
+            </div>
+            <div class="modal-footer">
+                <input class="btn btn-primary" type="button" value="Yes" ng-click="doUpdateScenario()" />
+                <input class="btn btn-primary" type="button" value="No" data-dismiss="modal" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="alert-bar" class="fade in alert alert-success" style="display:none; z-index:9999; width:30%; font-size:20pt; color:green; position:fixed; left:35%; top:20%;" role="alert">
+    <strong id="alert-bar-msg"/>
+</div>

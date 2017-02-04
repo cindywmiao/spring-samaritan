@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        div.relative {
+            position: relative;
+            border: 1px solid #120606;
+        }
+        div.relative1 {
+              position:center;
+          }
+    </style>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <script type='text/javascript'>
+        var baseUrl='/api/getAllData';
+        window.onload =display(baseUrl,'Mercury')
+            function back(){
+                var arr= baseUrl.split('/');
+                if(arr.length>=4){
+                    var fileName =arr[arr.length-1]
+                    baseUrl =(baseUrl.replace('/'+fileName,''))
+                    display(baseUrl,arr.length==4?"Mercury":arr[arr.length-2])
+                }
+        }
+        function display(url,filename) {
+            $.get(url,function(data){
+                var chart = new CanvasJS.Chart('PieChart', {
+                    theme: 'theme2',
+                    title:{
+                        text:filename
+                    },
+                    data: [
+                        {
+                            click: onClick,
+                            type: 'pie',
+                            showInLegend: true,
+                            toolTipContent: '{y} - #percent %',
+                            yValueFormatString: '#0.#,,. MB',
+                            legendText: '{indexLabel}',
+                            dataPoints:  data.dataPoints
+                        }
+                    ]
+                });
+                chart.render();
+                function onClick(e) {
+                    if(e.dataPoint.type!='File'){
+                        baseUrl=url+'/'+ e.dataPoint.indexLabel
+                        window.onload =display(url+"/"+ e.dataPoint.indexLabel,e.dataPoint.indexLabel)
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<script src='../../canvasjs.min.js'></script>
+<div class='relative' style='hight:650px;width:100%;'>
+    <button onclick='back()' style='float:right;width: 60px;height: 30px'>Back</button>
+    <div class='relative1' id='PieChart'  style='height: 580px; width: 95%;'>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<div class="container-fluid">
+    <div class="panel panel-headline">
+        <div class="panel-heading">
+            <h3 class="panel-title">Alarm Strategy</h3>
+            <input type="button" class="btn btn-primary" value="Create" ng-click="showCreateAlarm()" />
+        </div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Method</th>
+                    <th>Receivers</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat = "alarm in alarmStrategies">
+                    <td>{{ alarm.name }}</td>
+                    <td>{{ alarm.method }}</td>
+                    <td>{{ alarm.receivers }}</td>
+                    <td>
+                        <input type="button" value="delete" class="btn btn-danger" ng-click="showDeleteAlarm(alarm)" />
+                        &nbsp;
+                        &nbsp;
+                        <input type="button" value="update" class="btn btn-success" ng-click="showUpdateAlarm(alarm)" />
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="delete-alarm-prompt" class="modal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="width:25%">
+        <div class="modal-content">
+            <div class="modal-body">
+                <label class="control-label">
+                    Are you sure to delete the Alarm: {{selectedAlarm.name}}
+                </label>
+            </div>
+            <div class="modal-footer">
+                <input class="btn btn-primary" type="button" value="Yes" ng-click="doDeleteAlarm()" />
+                <input class="btn btn-primary" type="button" value="No" data-dismiss="modal" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="update-alarm-prompt" class="modal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="width:50%">
+        <div class="modal-content">
+            <div class="modal-body">
+                <label class="control-label">Name</label>
+                <input class="form-control" placeholder="name" ng-model="selectedAlarm.name" style="width:100%" readonly/>
+                <label class="control-label">Receiver</label>
+                <input class="form-control" placeholder="receivers" ng-model="selectedAlarm.receivers" style="width:100%"/>
+                <label class="control-label">Method</label>
+                <select name="method" ng-model="selectedAlarm.method">
+                    <option value="PHONE">PHONE</option>
+                    <option value="LOG">LOG</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <input class="btn btn-primary" type="button" value="Yes" ng-click="doUpdateAlarm()" />
+                <input class="btn btn-primary" type="button" value="No" data-dismiss="modal" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="create-alarm-prompt" class="modal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="container-fluid">
+        <div class="modal-dialog" style="width:50%">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <label class="control-label">Name</label>
+                    <input class="form-control" placeholder="name" ng-model="selectedAlarm.name" style="width:100%"/>
+                    <label class="control-label">Receiver</label>
+                    <input class="form-control" placeholder="receivers" ng-model="selectedAlarm.receivers" style="width:100%"/>
+                    <label class="control-label">Method</label>
+                    <select class="form-control" name="method" ng-model="selectedAlarm.method">
+                        <option value="PHONE">PHONE</option>
+                        <option value="LOG">LOG</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <input class="btn btn-primary" type="button" value="Yes" ng-click="doCreateAlarm()" />
+                    <input class="btn btn-primary" type="button" value="No" data-dismiss="modal" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

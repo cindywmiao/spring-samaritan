@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <!-- TITLE -->
+    <title>Demo</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/icon-sets.css">
+    <link rel="stylesheet" href="assets/css/main.min.css">
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+
+    <!-- ICONS -->
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+
+    <!-- Javascript -->
+    <script src="angular/angularjs.js"></script>
+    <script src="sustaining/js/monitor.js"></script>
+    <script src="assets/js/jquery/jquery-2.1.0.min.js"></script>
+    <script src="assets/js/bootstrap/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div ng-app = "mainApp" ng-controller = "monitorController">
+
+    <div id="wrapper">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="brand">
+                <a href="index.html"><img src="assets/img/logo.png" alt="Klorofil Logo" class="img-responsive logo"></a>
+            </div>
+            <div class="sidebar-scroll">
+                <nav>
+                    <ul class="nav">
+                        <li><a href="index.html" class=""><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                        <li><a href="alerts.html" class=""><i class="lnr lnr-code"></i> <span>Alerts</span></a></li>
+                        <li><a href="tasks.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Monitors</span></a></li>
+                        <li><a href="scenarios.html" class="active"><i class="lnr lnr-cog"></i> <span>Scenarios</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- END SIDEBAR -->
+
+        <!-- MAIN -->
+        <div class="main">
+            <nav class="navbar navbar-default" role="navigation">
+                <div ng-include="'page-navbar.html'"></div>
+            </nav>
+
+            <div class="main-content">
+                <div ng-include="'page-scenarios.html'"></div>
+            </div>
+        </div>
+        <!-- END MAIN -->
+    </div>
+</div>
+
+</body>
+</html>
